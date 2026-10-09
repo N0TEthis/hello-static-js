@@ -6,8 +6,10 @@
   "scripts": {
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
     "lint:html": "html-validate \"public/**/*.html\"",
-    "lint:css": "stylelint \"public/**/*.css\"",
+    "lint:css": "stylelint \"public/**/*.css\"", 
     "lint:js": "eslint \"public/**/*.js\""
+
+
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
