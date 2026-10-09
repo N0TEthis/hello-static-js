@@ -1,29 +1,29 @@
-name: CI/CD
+
+name: CI/CD - Retro JavaScript Website
 
 on:
   push:
     branches:
       - main
-
   pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-
   ci:
-    name: CI - Lint
+    name: CI - Validate Website
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -44,30 +44,33 @@ jobs:
       - name: Validate JavaScript
         run: npm run lint:js
 
-      - name: Upload public artifact
+      - name: Upload website files
         uses: actions/upload-artifact@v4
         with:
-          name: public
-          path: public
+          name: website-files
+          path: public/
           retention-days: 1
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: CD - Deploy to GitHub Pages
     needs: ci
-
-    if: github.ref == 'refs/heads/main'
-
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download public artifact
+      - name: Download website files
         uses: actions/download-artifact@v4
         with:
-          name: public
+          name: website-files
           path: public
 
       - name: Configure GitHub Pages
@@ -76,8 +79,9 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: public
 
-      - name: Deploy
+      - name: Deploy website
         id: deployment
         uses: actions/deploy-pages@v4
+
