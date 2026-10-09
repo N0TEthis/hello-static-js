@@ -185,7 +185,7 @@ const pages = {
   }
 }
 
-const navigation = [
+const siteNavigation = [
   ['index.html', '🏠 HOME'],
   ['about.html', '👾 ABOUT'],
   ['projects.html', '💾 PROJECTS'],
@@ -209,7 +209,7 @@ document.getElementById('app').innerHTML = `
     </div>
 
     <nav class="menu" aria-label="Main navigation">
-      ${navigation.map(([file, label]) =>
+     ${siteNavigation.map(([file, label]) =>
     `<a href="./${file}" ${file === currentFile ? 'aria-current="page"' : ''}>${label}</a>`
   ).join('')}
     </nav>
