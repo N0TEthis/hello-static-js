@@ -209,3 +209,8 @@
   }
 }
 
+/* Deployment 2: retro hover effect */
+.window:hover {
+  box-shadow: 4px 4px 0 #000080;
+}
+
