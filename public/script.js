@@ -215,7 +215,7 @@ document.getElementById('app').innerHTML = `
     </nav>
 
     <div class="ticker">
-      ★ WELCOME TO THE WEB ZONE ★ YOU ARE AWESOME ★ STAY A LITTLE WEIRD ★
+      ★ WELCOME TO THE WEB ZONE ★ YOU ARE AWESOME! ★ STAY A LITTLE WEIRD ★
     </div>
 
     <div class="layout">
