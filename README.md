@@ -48,7 +48,7 @@
 
 🚀 **Сайт уже можно посмотреть здесь:**
 
-👉 https://N0TEthis.github.io/hello-static/
+👉 https://N0TEthis.github.io/hello-static-js/
 
 ```text
 ╭────────────────────────────────────────╮
